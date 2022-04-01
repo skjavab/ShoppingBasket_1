@@ -18,8 +18,11 @@ import com.app.entity.BooksDiscountDetails;
 import com.app.model.ShoppingCartItem;
 import com.app.services.BookCartService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/api")
+@Api("Book Cart")
 public class BookCartController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
