@@ -1,14 +1,18 @@
 package com.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.common.constant.ApiConstant;
 import com.app.entity.Book;
+import com.app.entity.BooksDiscountDetails;
 import com.app.services.BookCartService;
 
 @RestController
@@ -17,9 +21,19 @@ public class BookCartController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	BookCartService service;
-
+	@GetMapping(value = ApiConstant.APPI_URL, produces = "application/json")
 	public List<Book> getAllBooks() {
+		
+		List<Book> books = new ArrayList<>();
 		log.info("Getting book details from the database.");
-		return service.getAllBooks();
+		books = service.getAllBooks();
+		return books;
+	}
+	
+	@GetMapping(value = ApiConstant.DISCOUNT_URL, produces = "application/json")
+	public List<BooksDiscountDetails> getAllBookDiscountDetails() {
+
+		log.info("Getting book details from the database.");
+		return service.getAllBookDiscountDetails();
 	}
 }

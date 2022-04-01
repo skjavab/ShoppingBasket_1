@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.app.entity.Book;
+import com.app.entity.BooksDiscountDetails;
 import com.app.repository.BookRepository;
+import com.app.repository.BooksDiscountRepository;
 
 @Configuration
 class LoadDatabase {
@@ -18,7 +20,7 @@ class LoadDatabase {
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
 	@Bean
-	CommandLineRunner initDatabase(BookRepository bookRepository) {
+	CommandLineRunner initDatabase(BookRepository bookRepository,BooksDiscountRepository booksDiscountRepository) {
 
 		return args -> {
 			List<Book> listBooks = new ArrayList<Book>();
@@ -39,6 +41,20 @@ class LoadDatabase {
 				listBooks.add(book);
 			}
 			bookRepository.saveAll(listBooks);
+			List<BooksDiscountDetails> byDifferentCopiesDiscountList = new ArrayList<>();
+			int differentCopies[] = { 2, 3, 4, 5 };
+			int discountList[] = { 5, 10, 20, 25 };
+			for (int i = 0; i < discountList.length; i++) {
+				BooksDiscountDetails booksDiscountDetails = new BooksDiscountDetails();
+				booksDiscountDetails.setId(i + 1);
+				booksDiscountDetails.setDifferentCopies(differentCopies[i]);
+				booksDiscountDetails.setDiscount(discountList[i]);
+				byDifferentCopiesDiscountList.add(booksDiscountDetails);
+
+			}
+			booksDiscountRepository.saveAll(byDifferentCopiesDiscountList);
+
+			booksDiscountRepository.saveAll(byDifferentCopiesDiscountList);
 
 		};
 	}

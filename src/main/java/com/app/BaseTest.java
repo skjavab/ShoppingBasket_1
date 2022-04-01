@@ -1,17 +1,16 @@
 package com.app;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.app.entity.Book;
 
 public class BaseTest {
-	
 	public static final int ID_1 = 1;
-
-	public List<Book> getBook() {
-
-		List<Book> listBooks = new ArrayList<Book>();
+	
+	
+	
+	public ArrayList<Book> getBooks() {
+		ArrayList<Book> listBooks = new ArrayList<Book>();
 		Integer price = 50;
 		Integer bookList[] = { 1, 2, 3, 4, 5 };
 		String title[] = { "Clean Code", "Clean Coder", "Clean Architecture", "Test Driven Development by Example",
@@ -30,4 +29,5 @@ public class BaseTest {
 		}
 		return listBooks;
 	}
+
 }
