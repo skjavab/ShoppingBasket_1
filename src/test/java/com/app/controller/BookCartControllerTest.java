@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.app.entity.Book;
 import com.app.entity.BooksDiscountDetails;
+import com.app.model.ShoppingCartItem;
 import com.app.services.impl.BookCartServiceImpl;
 import com.app.util.BookCartTestUtil;
 
@@ -24,6 +25,8 @@ import com.app.util.BookCartTestUtil;
 public class BookCartControllerTest  {
 	@InjectMocks
 	private BookCartController bookCartController;
+	
+	
 
 	@Mock
 	private BookCartServiceImpl bookCartService;
@@ -42,7 +45,16 @@ public class BookCartControllerTest  {
 		List<BooksDiscountDetails> actual= bookCartController.getAllBookDiscountDetails();
 		Assertions.assertEquals(listofBooksDiscounts, actual);
     }
-	
+    
+    @Test
+    public void normalPriceWhenBuySamecopys(){
+    	List<ShoppingCartItem> listofBooks = BookCartTestUtil.bookCart();
+    	Mockito.when(bookCartService.calculatePrice(listofBooks)).thenReturn(Double.valueOf("50.0"));
+    	Assertions.assertEquals(Double.valueOf("50.0"), bookCartController.calculatePrice(listofBooks));
+    	
+    }
+    
+   
 	
 	
 }

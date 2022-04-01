@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.entity.Book;
 import com.app.entity.BooksDiscountDetails;
+import com.app.model.ShoppingCartItem;
 
 public class BookCartTestUtil {
 
@@ -43,6 +44,23 @@ public class BookCartTestUtil {
 
 		}
 		return byDifferentCopiesDiscountList;
+	}
+	
+	public static List<ShoppingCartItem> bookCart() {
+		List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>();
+		ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+		shoppingCartItem.setBookName("Clean Code");
+		shoppingCartItem.setQuantity(1);
+		shoppingCartItemList.add(shoppingCartItem);
+		return shoppingCartItemList;
+	}
+	public static List<ShoppingCartItem> bookCartTwoBooks() {
+		List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>();
+		ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+		shoppingCartItem.setBookName("Clean Code");
+		shoppingCartItem.setQuantity(2);
+		shoppingCartItemList.add(shoppingCartItem);
+		return shoppingCartItemList;
 	}
 
 }

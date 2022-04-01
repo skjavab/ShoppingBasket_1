@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.app.BaseTest;
 import com.app.entity.Book;
 import com.app.entity.BooksDiscountDetails;
+import com.app.model.ShoppingCartItem;
 import com.app.repository.BookRepository;
 import com.app.repository.BooksDiscountRepository;
 import com.app.util.BookCartTestUtil;
@@ -47,5 +48,14 @@ public class BookCartServiceImplTest extends BaseTest{
 		List<BooksDiscountDetails> actual= service.getAllBookDiscountDetails();
 		Assertions.assertEquals(listofBooksDiscounts, actual);
 	}
+	 @Test
+	    public void normalPriceWhenBuySamecopys(){
+	    	List<ShoppingCartItem> listofBooks = BookCartTestUtil.bookCartTwoBooks();
+	    	double actual= service.calculatePrice(listofBooks);
+	    	Assertions.assertEquals(Double.valueOf("100.0"), actual);
+	    	
+	    }
 	
+	 
+	 
 }
